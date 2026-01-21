@@ -9,6 +9,7 @@ import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.QueryParam;
 import uce.edu.web.api.matricula.application.EstudianteService;
 import uce.edu.web.api.matricula.domain.Estudiante;
 
@@ -52,6 +53,12 @@ public class EstudianteResource {
     @Path("/borrar/{id}")
     public void borrar(@PathParam("id") Integer id){
         this.estudianteService.eliminar(id);
+    }
+
+    @GET
+    @Path("/buscarPorProvincia")
+    public List<Estudiante> buscarPorProvincia(@QueryParam("provincia") String provincia, @QueryParam("genero") String genero){
+        return this.estudianteService.buscarPorProvincia(provincia, genero);
     }
 
 }
