@@ -3,11 +3,11 @@ package uce.edu.web.api.matricula.interfaces;
 import java.util.List;
 
 import jakarta.inject.Inject;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
-import jakarta.ws.rs.PATCH;
-import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.QueryParam;
@@ -65,9 +65,10 @@ public class MateriaResource {
 
     @GET
     @Path("/codigo")
-    public Materia buscarPorCodigo(@PathParam("codigo") String codigo){
+    public Materia buscarPorCodigo(@QueryParam("codigo") String codigo){
         return this.materiaService.buscarPorCodigo(codigo);
     }
+
     
 
 }
