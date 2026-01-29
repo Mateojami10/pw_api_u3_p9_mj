@@ -26,7 +26,7 @@ public class EstudianteService {
     }
 
     public EstudianteRepresentation consultarPorId(Integer id){
-        return this.mapper(this.estudianteRepository.findById(id.longValue()));
+        return this.mappertoER(this.estudianteRepository.findById(id.longValue()));
     }
 
     @Transactional
@@ -37,7 +37,7 @@ public class EstudianteService {
 
     @Transactional
     public void actualizar(Integer id, EstudianteRepresentation est){
-        Estudiante estu = this.consultarPorId(id);
+        Estudiante estu = this.estudianteRepository.findById(id.longValue());
         estu.apellido = est.apellido;
         estu.nombre = est.nombre;
         estu.fechaNacimiento = est.fechaNacimiento;
@@ -45,7 +45,7 @@ public class EstudianteService {
     }
 
     @Transactional
-    public void actualizarParcial(Integer id, Estudiante est){
+    public void actualizarParcial(Integer id, EstudianteRepresentation est){
         Estudiante estu = this.mappertoEstudiante(this.consultarPorId(id)) ;
         if(est.apellido != null){
             estu.apellido = est.apellido;
@@ -69,8 +69,7 @@ public class EstudianteService {
         for(Estudiante estu : this.estudianteRepository.find("provincia = ?1 and genero = ?2", provincia, genero).list()){
             list.add(this.mappertoER(estu));
         }
-        
-        
+        return list;
     }
 
     
