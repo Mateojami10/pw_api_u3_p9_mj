@@ -41,12 +41,15 @@ public class EstudianteService {
         estu.apellido = est.apellido;
         estu.nombre = est.nombre;
         estu.fechaNacimiento = est.fechaNacimiento;
+        estu.provincia = est.provincia;
+        estu.genero = est.genero;
+
         //se actualiza automaticamente por dirty checking
     }
 
     @Transactional
     public void actualizarParcial(Integer id, EstudianteRepresentation est){
-        Estudiante estu = this.mappertoEstudiante(this.consultarPorId(id)) ;
+        Estudiante estu = this.estudianteRepository.findById(id.longValue());
         if(est.apellido != null){
             estu.apellido = est.apellido;
         }
@@ -55,6 +58,12 @@ public class EstudianteService {
         }
         if(est.fechaNacimiento != null){
             estu.fechaNacimiento = est.fechaNacimiento;
+        }
+        if(est.provincia != null){
+            estu.provincia = est.provincia;
+        }
+        if(est.genero != null){
+            estu.genero = est.genero;
         }
 
     }
