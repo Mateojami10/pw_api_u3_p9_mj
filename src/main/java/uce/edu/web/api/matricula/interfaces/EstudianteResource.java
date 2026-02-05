@@ -39,7 +39,7 @@ public class EstudianteResource {
     @GET
     @Path("")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed({"admin"})
+    @RolesAllowed({"admin", "user", "docente"})
     public List<EstudianteRepresentation> listarTodos(){
         System.out.println("Listando todos los estudiante XXXXXXXXXXXXXXXXXXXXXXX");
          //agregamos el link a cada uno de los elementos de la lista
